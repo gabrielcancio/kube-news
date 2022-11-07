@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: db-postgres
+  template: 
+    metadata:
+      labels:
+        app: db-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15.0
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "Pg#123"
+        - name: POSTGRES_USER
+          value: "kubenews"
+        - name: POSTGRES_DB
+          value: "kubenews"
+        
